@@ -1,0 +1,30 @@
+<div class="container">
+<h3>{{Titulo}}</h3>
+<div *ngIf="EstadoForm == 'L'">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+            <th class="text-center">Cantidad Empleados</th>
+            <th class="text-center">Fecha Fundacion</th>
+            <th class="text-center">Id Empresa</th>
+            <th class="text-center">Razon Social</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of Items">
+            <td>{{item.CantidadEmpleados}}</td>
+            <td>{{item.FechaFundacion}}</td>
+            <td>{{item.IdEmpresa}}</td>
+            <td>{{item.RazonSocial}}</td>
+        
+        </tr>
+      </tbody>
+    </table>
+    <input name="" id=""  class="btn btn-success" type = "button"  value= "Editar"(click) = 'Editar()'>
+</div>
+<div *ngIf="EstadoForm == 'E'">
+<h1>Modificar Empresa</h1>
+
+
+</div>
+</div>
