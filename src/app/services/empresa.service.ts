@@ -14,12 +14,21 @@ import { Empresa } from "../models/empresa";
 export class EmpresaService {
   resourceUrl: string;
 
+
   constructor(private hhtpCliente: HttpClient) {
     this.resourceUrl = "https://pavii.ddns.net/api/empresas"
+     
    }
 
    get(){
      return this.hhtpCliente.get(this.resourceUrl)
+   }
+
+
+   post(obj: Empresa){
+     window.alert("jdsjdkdjs")
+      return this.hhtpCliente.post(this.resourceUrl,obj)
+
    }
 
 }

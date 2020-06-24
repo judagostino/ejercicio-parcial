@@ -13,6 +13,7 @@ export class EmpresasComponent implements OnInit {
   Items: Empresa [] = [];
   FormReg: FormGroup;
   EstadoForm: string;
+  EmpresaAlta:  Empresa;
 
   constructor(private empresasService: EmpresaService, private formBuilder: FormBuilder) { 
   }
@@ -23,7 +24,7 @@ export class EmpresasComponent implements OnInit {
     this.FormReg = this.formBuilder.group({
          CantidadEmpleados: ['',[Validators.required]],
          FechaFundacion: ['',[Validators.required]],
-         IdEmpleado: ['',[Validators.required]],
+         IdEmpresa: ['',[Validators.required]],
          RazonSocial: ['',[Validators.required]]
     }
      
@@ -38,8 +39,45 @@ export class EmpresasComponent implements OnInit {
   });
   }
 
-  Editar(){
+  Modificar(dto){
     this.EstadoForm = 'E';
+  }
+
+  Agregar(){
+    this.FormReg.reset();
+    this.EstadoForm = 'A';
+  }
+
+  Listar(){
+    this.EstadoForm = 'L';
+    this.getEmpresa();
+  }
+
+  Almacenar(){
+     if(this.FormReg.invalid){
+       console.log(this.FormReg)
+       window.alert("Verifique los datos");
+       return;
+       }
+    
+    this.EmpresaAlta = new Empresa;
+    this.EmpresaAlta.CantidadEmpleados = this.FormReg.value.CantidadEmpleados;
+    this.EmpresaAlta.IdEmpresa = this.FormReg.value.IdEmpresa;
+    this.EmpresaAlta.RazonSocial = this.FormReg.value.RazonSocial;
+    this.EmpresaAlta.FechaFundacion = this.FormReg.value.FechaFundacion;
+    this.empresasService.post(this.EmpresaAlta).subscribe((res:any)=>{
+      window.alert("Empresa grabada");
+      this.Listar();
+    } );
+   
+   
+   
+   
+    
+  }
+
+  Volver(){
+    this.EstadoForm = 'L'
   }
 
 }
