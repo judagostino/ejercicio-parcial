@@ -1,10 +1,6 @@
 <div class="container">
 
-<div *ngIf="EstadoForm == 'L'">
-<button type="button" class="btn btn-outline-primary" (click)="Agregar()">
-            <span class="fas fa-plus"></span> 
-        Agregar</button>
-   </div>     
+     
 <div *ngIf="EstadoForm == 'L'">
   <h3>Listado Empresas </h3>
     <table class="table table-bordered table-striped">
@@ -28,50 +24,12 @@
                     <span class="fas fa-pencil-alt"></span>
                 </button>
                 &nbsp;
-                	
-                  <button _ngcontent-god-c33 id="submit" name="submit" class="btn btn-danger" value="Eliminar" (click)="Eliminar(id)">
-                    <span _ngcontent-god-c33="" class="fas fa-times" aria-hidden="true"></span>
-                  </button>
-                
             </td>
-        
         </tr>
       </tbody>
     </table>
     
 
-</div>
-<div *ngIf="EstadoForm == 'A'">
-<h3>Registrar Empresa</h3>
-<form name="FormReg" [formGroup]='FormReg' class="bg-light">
-
-  <div class="form-group">
-    <label for="CantidadEmpleados">Cantidad Empleados</label>
-    <input type="number" class="form-control" formControlName= "CantidadEmpleados" id="CantidadEmpleados"/>  
-  </div>
- <div class="form-group">
-    <label for="FechaFundacion">Fecha Fundacion</label>
-    <input type="date" class="form-control" formControlName= "FechaFundacion" id= "FechaFundacion"/>
-   </div>
-   <div class="form-group">
-    <label for="IdEmpresa">Id Empresa</label>
-    <input type="number" class="form-control" formControlName= "IdEmpresa" id="IdEmpresa"/>  
-  </div>
- 
-  <div class="form-group">
-    <label for="RazonSocial">"Razon Social"</label>
-    <input type="text" class="form-control" formControlName= "RazonSocial" id="RazonSocial"/>  
-  </div>
-<div class="row justify-content-center">
-		<button type="button"  class="btn btn-primary" (click)="Grabar()">
-            <span class="fas fa-check"></span> Almacenar
-        </button>
-		&nbsp;
-		<button type="button" class="btn btn-warning" (click)="Volver()">
-            <span class="fas fa-undo"></span> 
-        Volver</button>
-	</div>
-</form>
 </div>
 <div *ngIf="EstadoForm == 'M'">
 <h3>Modificar Empresa</h3>

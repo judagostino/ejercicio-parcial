@@ -29,12 +29,5 @@ export class EmpresaService {
     return this.hhtpCliente.put(this.resourceUrl +'/'+ Id, obj);
   }
 
-   post(obj:Empresa) {
-    return this.hhtpCliente.put(this.resourceUrl,obj);
-  }
-
- delete(Id) {
-    return this.hhtpCliente.delete(this.resourceUrl + Id);
-  }
    }
 

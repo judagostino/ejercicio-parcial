@@ -14,7 +14,7 @@ export class EmpresasComponent implements OnInit {
   FormReg: FormGroup;
   EstadoForm: string;
   EmpresaAlta:  Empresa;
-  submitted = false;
+
 
   constructor(private empresasService: EmpresaService, private formBuilder: FormBuilder) { 
   }
@@ -22,7 +22,6 @@ export class EmpresasComponent implements OnInit {
   ngOnInit() {
     this.EstadoForm = 'L';
     this.getEmpresa();
-    this.submitted = false;
     this.FormReg = this.formBuilder.group({
          CantidadEmpleados: ['',[Validators.required]],
          FechaFundacion: ['',[Validators.required]],
@@ -47,13 +46,6 @@ export class EmpresasComponent implements OnInit {
     this.FormReg.setValue(item);
   }
 
-  Agregar(){
-    window.scroll(0, 0);
-    this.EstadoForm = 'A';
-    this.submitted = false;
-   
-  }
-
   Listar(){
     this.EstadoForm = 'L';
     this.getEmpresa();
@@ -76,20 +68,6 @@ export class EmpresasComponent implements OnInit {
     } );
   }
 
-  Grabar(){
-     this.submitted = true;
-    // verificar que los validadores esten OK
-     if (this.FormReg.invalid)
-     {
-      return;
-      }
-     const itemCopy = { ...this.FormReg.value };
-     itemCopy.IdEquipo = 0;
-    this.empresasService.post(itemCopy).subscribe((res: any) => {
-        this.getEmpresa();
-        this.Volver();
-});
-  }
   Volver(){
     this.EstadoForm = 'L'
   }
