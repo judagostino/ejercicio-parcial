@@ -1,6 +1,12 @@
 <div class="container">
 
 <div *ngIf="EstadoForm == 'L'">
+<button type="button" class="btn btn-outline-primary" (click)="Agregar()">
+            <span class="fas fa-plus"></span> 
+        Agregar</button>
+   </div>     
+<div *ngIf="EstadoForm == 'L'">
+  <h3>Listado Empresas </h3>
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
@@ -21,14 +27,18 @@
               	<button type="button" class="btn btn-sm btn-outline-primary" title="Modificar" (click)="Modificar(item)">
                     <span class="fas fa-pencil-alt"></span>
                 </button>
+                &nbsp;
+                	
+                  <button _ngcontent-god-c33 id="submit" name="submit" class="btn btn-danger" value="Eliminar" (click)="Eliminar(id)">
+                    <span _ngcontent-god-c33="" class="fas fa-times" aria-hidden="true"></span>
+                  </button>
+                
             </td>
         
         </tr>
       </tbody>
     </table>
-    <button type="button" class="btn btn-outline-primary" (click)="Agregar()">
-            <span class="fas fa-plus"></span> 
-        Agregar</button>
+    
 
 </div>
 <div *ngIf="EstadoForm == 'A'">
@@ -53,7 +63,7 @@
     <input type="text" class="form-control" formControlName= "RazonSocial" id="RazonSocial"/>  
   </div>
 <div class="row justify-content-center">
-		<button type="button"  class="btn btn-primary" (click)="Almacenar()">
+		<button type="button"  class="btn btn-primary" (click)="Grabar()">
             <span class="fas fa-check"></span> Almacenar
         </button>
 		&nbsp;
@@ -85,8 +95,8 @@
     <input type="text" class="form-control" formControlName= "RazonSocial" id="RazonSocial"/>  
   </div>
 <div class="row justify-content-center">
-		<button type="button"  class="btn btn-primary" (click)="Almacenar()">
-            <span class="fas fa-check"></span> Almacenar
+		<button type="button"  class="btn btn-primary" (click)="Actualizar()">
+            <span class="fas fa-check"></span> Actualizar
         </button>
 		&nbsp;
 		<button type="button" class="btn btn-warning" (click)="Volver()">

@@ -55,9 +55,8 @@ export class EmpresasComponent implements OnInit {
     this.getEmpresa();
   }
 
-  Almacenar(){
+  Actualizar(){
      if(this.FormReg.invalid){
-       console.log(this.FormReg)
        window.alert("Verifique los datos");
        return;
        }
@@ -71,11 +70,23 @@ export class EmpresasComponent implements OnInit {
       window.alert("Empresa grabada");
       this.Listar();
     } );
-   
-   
-   
-   
+  }
+
+  Grabar(){
+     if(this.FormReg.invalid){
+       window.alert("Verifique los datos");
+       return;
+       }
     
+    this.EmpresaAlta = new Empresa;
+    this.EmpresaAlta.CantidadEmpleados = this.FormReg.value.CantidadEmpleados;
+    this.EmpresaAlta.IdEmpresa = this.FormReg.value.IdEmpresa;
+    this.EmpresaAlta.RazonSocial = this.FormReg.value.RazonSocial;
+    this.EmpresaAlta.FechaFundacion = this.FormReg.value.FechaFundacion;
+    this.empresasService.post(this.EmpresaAlta).subscribe((res:any)=>{
+      window.alert("Empresa grabada");
+      this.Listar();
+    } );
   }
 
   Volver(){
