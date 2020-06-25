@@ -14,6 +14,7 @@ export class EmpresasComponent implements OnInit {
   FormReg: FormGroup;
   EstadoForm: string;
   EmpresaAlta:  Empresa;
+  submitted = false;
 
   constructor(private empresasService: EmpresaService, private formBuilder: FormBuilder) { 
   }
@@ -21,6 +22,7 @@ export class EmpresasComponent implements OnInit {
   ngOnInit() {
     this.EstadoForm = 'L';
     this.getEmpresa();
+    this.submitted = false;
     this.FormReg = this.formBuilder.group({
          CantidadEmpleados: ['',[Validators.required]],
          FechaFundacion: ['',[Validators.required]],
@@ -46,8 +48,10 @@ export class EmpresasComponent implements OnInit {
   }
 
   Agregar(){
-    this.FormReg.reset();
+    window.scroll(0, 0);
     this.EstadoForm = 'A';
+    this.submitted = false;
+   
   }
 
   Listar(){
@@ -73,22 +77,19 @@ export class EmpresasComponent implements OnInit {
   }
 
   Grabar(){
-     if(this.FormReg.invalid){
-       window.alert("Verifique los datos");
-       return;
-       }
-    
-    this.EmpresaAlta = new Empresa;
-    this.EmpresaAlta.CantidadEmpleados = this.FormReg.value.CantidadEmpleados;
-    this.EmpresaAlta.IdEmpresa = this.FormReg.value.IdEmpresa;
-    this.EmpresaAlta.RazonSocial = this.FormReg.value.RazonSocial;
-    this.EmpresaAlta.FechaFundacion = this.FormReg.value.FechaFundacion;
-    this.empresasService.post(this.EmpresaAlta).subscribe((res:any)=>{
-      window.alert("Empresa grabada");
-      this.Listar();
-    } );
+     this.submitted = true;
+    // verificar que los validadores esten OK
+     if (this.FormReg.invalid)
+     {
+      return;
+      }
+     const itemCopy = { ...this.FormReg.value };
+     itemCopy.IdEquipo = 0;
+    this.empresasService.post(itemCopy).subscribe((res: any) => {
+        this.getEmpresa();
+        this.Volver();
+});
   }
-
   Volver(){
     this.EstadoForm = 'L'
   }
