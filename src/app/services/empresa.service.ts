@@ -25,10 +25,9 @@ export class EmpresaService {
    }
 
 
-   post(obj: Empresa){
-     window.alert("jdsjdkdjs")
-      return this.hhtpCliente.post(this.resourceUrl,obj)
+  put(Id: number, obj:Empresa) {
+    return this.hhtpCliente.put(this.resourceUrl +'/'+ Id, obj);
+  }
 
    }
 
-}

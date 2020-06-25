@@ -39,8 +39,10 @@ export class EmpresasComponent implements OnInit {
   });
   }
 
-  Modificar(dto){
-    this.EstadoForm = 'E';
+  Modificar(item){
+    this.EstadoForm = 'M';
+    console.log(item);
+    this.FormReg.setValue(item);
   }
 
   Agregar(){
@@ -65,7 +67,7 @@ export class EmpresasComponent implements OnInit {
     this.EmpresaAlta.IdEmpresa = this.FormReg.value.IdEmpresa;
     this.EmpresaAlta.RazonSocial = this.FormReg.value.RazonSocial;
     this.EmpresaAlta.FechaFundacion = this.FormReg.value.FechaFundacion;
-    this.empresasService.post(this.EmpresaAlta).subscribe((res:any)=>{
+    this.empresasService.put(this.EmpresaAlta.IdEmpresa,this.EmpresaAlta).subscribe((res:any)=>{
       window.alert("Empresa grabada");
       this.Listar();
     } );
